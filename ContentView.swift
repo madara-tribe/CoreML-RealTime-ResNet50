@@ -1,9 +1,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isStart = false
+    @State private var isText = true
     var body: some View {
-        CameraViewController()
-            .edgesIgnoringSafeArea(.top)
+        VStack {
+            Image("waiting")
+            Button(action:{
+                self.isStart.toggle()
+                self.isText.toggle()
+            }, label:{
+                Text(isText ? "Start PX1" : "")
+                    .padding()
+            })
+            .sheet(isPresented:$isStart){
+                CameraViewController()
+                    .edgesIgnoringSafeArea(.top)
+            }
+        }
     }
 }
 
