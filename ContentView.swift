@@ -7,15 +7,15 @@ struct ContentView: View {
         VStack {
             Image("waiting")
             Button(action:{
-                self.isStart.toggle()
-                self.isText.toggle()
+                isStart.toggle()
+                isText.toggle()
             }, label:{
-                Text(isText ? "Start PX1" : "")
+                Text(isText ? "Start PX1" : "ReStart PX1")
                     .padding()
             })
             .sheet(isPresented:$isStart){
                 CameraViewController()
-                    .edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea(.all)
             }
         }
     }

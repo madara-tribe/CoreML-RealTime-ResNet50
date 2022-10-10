@@ -5,13 +5,11 @@ import SwiftUI
 final class CameraViewController: UIViewController {
     let cameraController = CameraController()
     var previewView: UIView!
-    
+    //weak var observationLabel: UILabel!
     override func viewDidLoad() {
-                
         previewView = UIView(frame: CGRect(x:0, y:0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         previewView.contentMode = UIView.ContentMode.scaleAspectFit
         view.addSubview(previewView)
-        
         cameraController.prepare {(error) in
             if let error = error {
                 print(error)

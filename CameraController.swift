@@ -2,6 +2,7 @@ import UIKit
 import AVFoundation
 
 class CameraController: NSObject{
+    @IBOutlet private weak var observationLabel: UILabel!
     var captureSession: AVCaptureSession?
     var backCamera: AVCaptureDevice?
     var backCameraInput: AVCaptureDeviceInput?
@@ -75,5 +76,4 @@ class CameraController: NSObject{
         view.layer.insertSublayer(self.previewLayer!, at: 0)
         self.previewLayer?.frame = view.frame
     }
-    
 }
