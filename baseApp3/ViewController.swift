@@ -7,9 +7,12 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     var uiimage: UIImage?
     public var text0:UILabel = UILabel()
     public var text1:UILabel = UILabel()
+    var detecting:Bool = false
+    
     let captureSession = AVCaptureSession()
     let output: AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
     var previewLayer:AVCaptureVideoPreviewLayer!
+    var backCamera: AVCaptureDevice?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +44,8 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     private func startCapture() {
         captureSession.sessionPreset = AVCaptureSession.Preset.hd1280x720
         
-        let captureDevice = AVCaptureDevice.default(for: .video)!
-        guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
+        let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back)
+        guard let input = try? AVCaptureDeviceInput(device: captureDevice!) else { return }
         guard captureSession.canAddInput(input) else { return }
         captureSession.addInput(input)
         
@@ -54,7 +57,7 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
         // プレビューの設定
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        previewLayer.frame = view.bounds
+        previewLayer.frame = view.frame
         view.layer.insertSublayer(previewLayer, at: 0)
         // キャプチャー開始
         captureSession.startRunning()
@@ -80,12 +83,17 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        uiimage = self.UIImageFromSampleBuffer(sampleBuffer)
-        let start_time = Date()
-        DispatchQueue(label:"detecting.queue").async {
-            var s:String = self.calcurateTime(stime:start_time)//"PX1 testing"
-            DispatchQueue.main.async {
-                self.text1.text = "PX1 testing: " + s
+        if (self.detecting == false) {
+            self.detecting = true
+            uiimage = self.UIImageFromSampleBuffer(sampleBuffer)
+            let start_time = Date()
+            DispatchQueue(label:"detecting.queue").async {
+                var s:String = self.calcurateTime(stime:start_time)//"PX1 testing"
+                DispatchQueue.main.async {
+                    self.text1.text = "PX1 testing: " + s
+                }
+                usleep(500*1000) // ms
+                self.detecting = false
             }
         }
     }
