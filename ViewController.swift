@@ -7,6 +7,8 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     public var obsLabel2:UILabel = UILabel()
     public var text1:UILabel = UILabel()
     public var predtime:UILabel = UILabel()
+    
+    let fontsize:CGFloat = 20
     var uiimage: UIImage?
     var detecting:Bool = false
     var stime:Date!
@@ -23,9 +25,8 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
         resnet50ModelManager.delegate = self
         self.startCapture()
         
-        let fontsize:CGFloat = 20
         // Text PX
-        self.text1.frame = CGRect.init(x:0, y:0, width: 300, height: 30)
+        self.text1.frame = CGRect.init(x:0, y:10, width: 300, height: 30)
         self.text1.textColor = UIColor.red
         self.text1.font = UIFont.systemFont(ofSize:fontsize)
         self.view.addSubview(self.text1)
@@ -33,8 +34,6 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
         // Text bg
         self.obsLabel1.backgroundColor = UIColor(red:0.0,green:0.0,blue:0.0,alpha:0.5)
         self.obsLabel1.numberOfLines = 0
-        self.obsLabel1.layer.cornerRadius = 4
-        self.obsLabel1.clipsToBounds = true
         self.view.addSubview(self.obsLabel1)
 
         // Text
@@ -46,7 +45,7 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
         // Text for predtime
         self.predtime.textColor = UIColor.white
         self.predtime.font = UIFont.systemFont(ofSize:fontsize)
-        self.predtime.numberOfLines = 0
+        self.obsLabel1.numberOfLines = 0
         self.view.addSubview(self.predtime)
         self.setPosition()
     }
@@ -54,7 +53,7 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     private func calcurateTime(stime:Date)-> String{
         let timeInterval = Date().timeIntervalSince(stime)
         //let predtime = String((timeInterval * 100) / 100) + "[ms]"
-        return String((timeInterval * 100) / 100) + "[ms]"
+        return String(ceil(timeInterval * 10000) / 10000) + "[ms]"
     }
     
     private func startCapture() {
@@ -114,7 +113,7 @@ extension CameraViewController: Resnet50ModelManagerDelegate {
             DispatchQueue(label:"detecting.queue").async {
                 DispatchQueue.main.async {
                     self.predtime.text = "Latency: " + self.calcurateTime(stime:self.stime)
-                    self.obsLabel2.text = "\(observation.identifier) is \(observation.confidence)%"
+                    self.obsLabel2.text = "\(observation.identifier) is \(ceil(observation.confidence*1000)/1000)%"
                 }
                 usleep(500*1000) // ms
                 self.detecting = false
