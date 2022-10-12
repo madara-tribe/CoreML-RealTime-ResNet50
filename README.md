@@ -1,4 +1,4 @@
-# PX1 CoreML of ResNet50 for iOS (as Prototype)
+# PX1 - CoreML of ResNet50 for iOS (as Prototype)
 
 ## iPhone7
 
