@@ -1,14 +1,9 @@
 # PX1 - CoreML of ResNet50 for iOS (as Prototype)
 
 
-## iPad Pro(12.9inch)
+## iPad Pro(12.9inch) / iPhone7
 
-<img src="https://user-images.githubusercontent.com/48679574/195619737-44254250-53e2-4456-a935-a18ab4ffe1c9.gif" width="400" height="600"/>
-
-
-## iPhone7
-
-<img src="https://user-images.githubusercontent.com/48679574/195618598-8226c424-1512-4942-a81b-009193789a9d.gif" width="400" height="600"/>
+<img src="https://user-images.githubusercontent.com/48679574/195619737-44254250-53e2-4456-a935-a18ab4ffe1c9.gif" width="400" height="600"/><img src="https://user-images.githubusercontent.com/48679574/195618598-8226c424-1512-4942-a81b-009193789a9d.gif" width="400" height="600"/>
 
 
 ## Latency
