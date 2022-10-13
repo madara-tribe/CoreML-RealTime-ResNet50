@@ -11,4 +11,4 @@
 - When resize image size to 224 and 128 its Latency is same (not delay and not fast)
 
 <b>agenda</b>
-- iPad image is so large and it crashes soon by memory issue
+- iPad crashes soon by memory issue
