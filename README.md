@@ -3,9 +3,19 @@
 
 ## iPad Pro(12.9inch)
 
+<img src="https://user-images.githubusercontent.com/48679574/195619737-44254250-53e2-4456-a935-a18ab4ffe1c9.gif" width="400" height="600"/>
+
+
 ## iPhone7
 
 <img src="https://user-images.githubusercontent.com/48679574/195618598-8226c424-1512-4942-a81b-009193789a9d.gif" width="400" height="600"/>
+
+
+## Latency
+| Hardware | model | avarage Latency |
+| :---         |     :---:      |        ---: |
+| iPadPro| ResNet50| 17,652,928 [ms]|
+| iPhone7 | ResNet50| 12,658,784 [ms]|
 
 ## putting into action. its info and agenda
 <b>info</b>
