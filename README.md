@@ -14,8 +14,8 @@
 ## Latency
 | Hardware | model | avarage Latency |
 | :---         |     :---:      |        ---: |
-| iPadPro| ResNet50| 17,652,928 [ms]|
-| iPhone7 | ResNet50| 12,658,784 [ms]|
+| iPadPro| ResNet50| 0.07 [ms]|
+| iPhone7 | ResNet50| 0.19 [ms]|
 
 ## putting into action. its info and agenda
 <b>info</b>
