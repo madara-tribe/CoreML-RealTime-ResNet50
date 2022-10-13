@@ -94,14 +94,12 @@ extension CameraViewController: Resnet50ModelManagerDelegate {
     func didRecieve(_ observation: VNClassificationObservation) {
         if (self.detecting == false) {
             self.detecting = true
-            DispatchQueue(label:"detecting.queue").async {
-                DispatchQueue.main.async {
-                    self.predtime.text = "Latency: " + calcurateTime(stime:self.stime)
-                    self.obsLabel2.text = "\(observation.identifier) is \(ceil(observation.confidence*1000)/10)%"
-                }
-                usleep(500*1000) // ms
-                self.detecting = false
-            }
+            DispatchQueue.main.async(execute: {
+                self.predtime.text = "Latency: " + calcurateTime(stime:self.stime)
+                self.obsLabel2.text = "\(observation.identifier) is \(ceil(observation.confidence*1000)/10)%"
+            })
+            usleep(500*1000) // ms
+            self.detecting = false
         }
     }
 }
