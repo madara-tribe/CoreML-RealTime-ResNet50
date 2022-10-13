@@ -12,7 +12,7 @@
 | iPadPro| ResNet50| 0.07 [ms]|
 | iPhone7 | ResNet50| 0.19 [ms]|
 
-## putting into action. its info and agenda
+## PX1 - putting into action. its info and agenda
 <b>info</b>
 - image's brightness and image size is not almost influenced to accuracy 
 - iPad and iPhone image size are same : Height is 720 width is 1280
