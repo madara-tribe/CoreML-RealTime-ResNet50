@@ -17,4 +17,4 @@
 - image's brightness and image size is not almost influenced to accuracy 
 - iPad and iPhone image size are same : Height is 720 width is 1280
 - When resize image size to 224 and 128 its Latency is same (not delay and not fast)
-- if <code>DispatchQueue.main.async()</code> must be adjusted, so it will cause crash
+- <code>DispatchQueue.main.async()</code> must be adjusted, it will cause crash
