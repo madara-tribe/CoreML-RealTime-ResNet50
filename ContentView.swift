@@ -13,8 +13,10 @@ struct ContentView: View {
                     .padding()
             })
         }
-        .sheet(isPresented:$isStart){
+        .fullScreenCover(isPresented:$isStart){
             CameraViewController()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }

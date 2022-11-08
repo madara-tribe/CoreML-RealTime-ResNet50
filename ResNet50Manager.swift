@@ -9,13 +9,11 @@ protocol Resnet50ModelManagerDelegate: AnyObject {
 class Resnet50ModelManager: NSObject {
 
     weak var delegate: Resnet50ModelManagerDelegate?
-
     // Request
     func CreateRequest()->VNCoreMLRequest{
         do {
             // Model instance
-            let configuration = MLModelConfiguration()
-            let model = try VNCoreMLModel(for: Resnet50(configuration:configuration).model)
+            let model = try VNCoreMLModel(for: Resnet50(configuration:MLModelConfiguration()).model)
             // create Request
             let request = VNCoreMLRequest(model:model, completionHandler:{request, error in
                 // post proccesing
@@ -37,17 +35,14 @@ class Resnet50ModelManager: NSObject {
         // get results label
         self.delegate?.didRecieve(classification[0])
     }
-    func performRequet(image:UIImage){
-        guard let ciImage = CIImage(image : image) else {
-                fatalError("can not convert to CIImage")
-            }
+    func performRequet(ciimage:CIImage){
         // handler instance
-        let handler = VNImageRequestHandler(ciImage: ciImage)
+        let handler = VNImageRequestHandler(ciImage: ciimage)
         // request
-        let classificationRequest = CreateRequest()
-        // do handler
+        //let classificationRequest = CreateRequest()
+        // do handler with request
         do {
-            try handler.perform([classificationRequest])
+            try handler.perform([CreateRequest()])
         } catch {
             fatalError("failed to predict image")
         }
