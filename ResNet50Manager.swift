@@ -13,7 +13,7 @@ class Resnet50ModelManager: NSObject {
     func CreateRequest()->VNCoreMLRequest{
         do {
             // Model instance
-            let model = try VNCoreMLModel(for: Resnet50(configuration:MLModelConfiguration()).model)
+            let model = try VNCoreMLModel(for: Resnet50Int8LUT(configuration:MLModelConfiguration()).model)
             // create Request
             let request = VNCoreMLRequest(model:model, completionHandler:{request, error in
                 // post proccesing
