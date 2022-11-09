@@ -10,7 +10,7 @@
 | Hardware | model | avarage Latency |
 | :---         |     :---:      |        ---: |
 | iPadPro| Resnet50Int8LUT| 0.058 [ms]|
-| iPhone7 | Resnet50Int8LUT| 0.16 [ms]|
+| iPhone7 | Resnet50Int8LUT| 0.154 [ms]|
 
 ## PX1 - putting into action and its info 
 <b>info</b>
